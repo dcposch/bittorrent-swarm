@@ -50,7 +50,7 @@ function Swarm (infoHash, peerId, opts) {
   debug('new swarm (i %s p %s)', self.infoHash, self.peerId)
 
   self.handshakeOpts = opts.handshake // handshake extensions (optional)
-  self.maxConns = opts.maxConns !== undefined ? opts.maxConns : MAX_CONNS
+  self.maxConns = Number(opts.maxConns) || MAX_CONNS
 
   self.destroyed = false
   self.listening = false
