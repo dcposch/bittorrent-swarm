@@ -1,10 +1,10 @@
 # bittorrent-swarm [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url]
 
-[travis-image]: https://img.shields.io/travis/feross/bittorrent-swarm/master.svg?style=flat
+[travis-image]: https://img.shields.io/travis/feross/bittorrent-swarm/master.svg
 [travis-url]: https://travis-ci.org/feross/bittorrent-swarm
-[npm-image]: https://img.shields.io/npm/v/bittorrent-swarm.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/bittorrent-swarm.svg
 [npm-url]: https://npmjs.org/package/bittorrent-swarm
-[downloads-image]: https://img.shields.io/npm/dm/bittorrent-swarm.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/bittorrent-swarm.svg
 [downloads-url]: https://npmjs.org/package/bittorrent-swarm
 
 ### Simple, robust, BitTorrent "swarm" implementation
