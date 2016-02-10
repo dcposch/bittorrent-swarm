@@ -59,8 +59,6 @@ test('swarm join', function (t) {
       t.equal(swarm1.wires.length, 1)
       t.ok(/127\.0\.0\.1:\d{1,5}/.test(addr))
       t.equal(wire.peerId.toString('hex'), peerId2)
-
-      swarm1.destroy()
     })
 
     swarm2.on('wire', function (wire, addr) {
@@ -69,7 +67,10 @@ test('swarm join', function (t) {
       t.equal(swarm2.wires.length, 1)
       t.ok(/127\.0\.0\.1:\d{1,5}/.test(addr))
       t.equal(wire.peerId.toString('hex'), peerId)
+    })
 
+    t.on('end', function () {
+      swarm1.destroy()
       swarm2.destroy()
     })
   })
