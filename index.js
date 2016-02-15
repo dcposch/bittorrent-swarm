@@ -391,7 +391,12 @@ Swarm.prototype._onError = function (err) {
  */
 Swarm.prototype._validAddr = function (addr) {
   var self = this
-  var parts = addrToIPPort(addr)
+  var parts
+  if (addr) {
+    try {
+      parts = addrToIPPort(addr)
+    } catch (e) { return false }
+  }
   var host = parts[0]
   var port = parts[1]
   return port > 0 && port < 65535 && !(host === '127.0.0.1' && port === self._port)
