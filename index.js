@@ -392,10 +392,10 @@ Swarm.prototype._onError = function (err) {
 Swarm.prototype._validAddr = function (addr) {
   var self = this
   var parts
-  if (addr) {
-    try {
-      parts = addrToIPPort(addr)
-    } catch (e) { return false }
+  try {
+    parts = addrToIPPort(addr)
+  } catch (e) {
+    return false
   }
   var host = parts[0]
   var port = parts[1]
