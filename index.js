@@ -108,10 +108,13 @@ Object.defineProperty(Swarm.prototype, 'numPeers', {
  * Add a peer to the swarm.
  * @param {string|simple-peer} peer    "ip:port" string or simple-peer instance
  * @param {string}             peer.id bittorrent peer id (when `peer` is simple-peer)
+ * @return {boolean} true if peer was added, false if peer was invalid
+
  */
 Swarm.prototype.addPeer = function (peer) {
   var self = this
-  self._addPeer(peer) // don't expose private Peer instance in return value
+  var newPeer = self._addPeer(peer)
+  return !!newPeer // don't expose private Peer instance in return value
 }
 
 Swarm.prototype._addPeer = function (peer) {
@@ -126,7 +129,7 @@ Swarm.prototype._addPeer = function (peer) {
   }
 
   var id = (peer && peer.id) || peer
-  if (self._peers[id]) return
+  if (self._peers[id]) return null
 
   debug('addPeer %s', id)
 
