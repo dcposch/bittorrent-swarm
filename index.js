@@ -136,7 +136,7 @@ Swarm.prototype._addPeer = function (peer) {
   var newPeer
   if (typeof peer === 'string') {
     // `peer` is an addr ("ip:port" string)
-    newPeer = Peer.createOutgoingTCPPeer(peer, self)
+    newPeer = Peer.createTCPOutgoingPeer(peer, self)
   } else {
     // `peer` is a WebRTC connection (simple-peer)
     if (self.paused) {
@@ -176,7 +176,7 @@ Swarm.prototype.addWebSeed = function (url, parsedTorrent) {
 
   debug('addWebSeed %s', url)
 
-  var newPeer = Peer.createWebPeer(url, parsedTorrent, self)
+  var newPeer = Peer.createWebSeedPeer(url, parsedTorrent, self)
   self._peers[newPeer.id] = newPeer
   self._peersLength += 1
 }
