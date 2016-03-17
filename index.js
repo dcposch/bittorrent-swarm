@@ -129,7 +129,10 @@ Swarm.prototype._addPeer = function (peer) {
   }
 
   var id = (peer && peer.id) || peer
-  if (self._peers[id]) return null
+  if (self._peers[id]) {
+    if (peer && peer.destroy) peer.destroy(new Error('duplicate peer'))
+    return null
+  }
 
   debug('addPeer %s', id)
 
