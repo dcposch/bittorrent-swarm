@@ -120,17 +120,19 @@ Swarm.prototype.addPeer = function (peer) {
 Swarm.prototype._addPeer = function (peer) {
   var self = this
   if (self.destroyed) {
-    if (peer && peer.destroy) peer.destroy(new Error('swarm already destroyed'))
+    debug('ignoring added peer: swarm already destroyed')
+    if (typeof peer !== 'string') peer.destroy()
     return null
   }
   if (typeof peer === 'string' && !self._validAddr(peer)) {
-    debug('ignoring invalid peer %s (from swarm.addPeer)', peer)
+    debug('ignoring added peer: invalid address %s', peer)
     return null
   }
 
   var id = (peer && peer.id) || peer
   if (self._peers[id]) {
-    if (peer && peer.destroy) peer.destroy(new Error('duplicate peer'))
+    debug('ignoring added peer: duplicate peer id')
+    if (typeof peer !== 'string') peer.destroy()
     return null
   }
 
