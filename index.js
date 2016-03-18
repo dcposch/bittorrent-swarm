@@ -226,9 +226,8 @@ Swarm.prototype.removePeer = function (id) {
 }
 
 /**
- * Temporarily stop connecting to new peers. Note that this does not pause new
- * incoming connections, nor does it pause the streams of existing connections
- * or their wires.
+ * Temporarily stop connecting to new peers. Note that this does not pause the streams
+ * of existing connections or their wires.
  */
 Swarm.prototype.pause = function () {
   var self = this
