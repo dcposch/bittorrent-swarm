@@ -136,6 +136,12 @@ Swarm.prototype._addPeer = function (peer) {
     return null
   }
 
+  if (self.paused) {
+    debug('ignoring added peer: swarm paused')
+    if (typeof peer !== 'string') peer.destroy()
+    return null
+  }
+
   debug('addPeer %s', id)
 
   var newPeer
@@ -144,10 +150,6 @@ Swarm.prototype._addPeer = function (peer) {
     newPeer = Peer.createTCPOutgoingPeer(peer, self)
   } else {
     // `peer` is a WebRTC connection (simple-peer)
-    if (self.paused) {
-      peer.destroy(new Error('swarm paused'))
-      return null
-    }
     newPeer = Peer.createWebRTCPeer(peer, self)
   }
 
